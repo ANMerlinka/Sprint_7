@@ -8,7 +8,6 @@ import io.restassured.specification.RequestSpecification;
 public class BaseClient {
     protected RequestSpecification getSpec(){
         return new RequestSpecBuilder()
-                .log(LogDetail.ALL)
                 .setBaseUri("http://qa-scooter.praktikum-services.ru")
                 .setContentType(ContentType.JSON)
                 .build();
