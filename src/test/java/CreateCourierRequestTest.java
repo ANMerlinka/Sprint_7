@@ -6,6 +6,7 @@ import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.Test;
 import pojo.CreateCourierRequest;
+import pojo.LoginCourierRequest;
 
 public class CreateCourierRequestTest {
     private CourierClient courierClient = new CourierClient();
@@ -21,6 +22,12 @@ public class CreateCourierRequestTest {
         courierClient.create(createCourierRequest)
                 .statusCode(201)
                 .body("ok", Matchers.equalTo(true));
+
+        LoginCourierRequest loginCourierRequest = LoginCourierRequest.from(createCourierRequest);
+
+        id = courierClient.login(loginCourierRequest)
+                .statusCode(200)
+                .extract().jsonPath().get("id");
     }
 
 
@@ -38,6 +45,11 @@ public class CreateCourierRequestTest {
                 .statusCode(409)
                 .assertThat().body("message", Matchers.equalTo("Этот логин уже используется. Попробуйте другой."));
 
+        LoginCourierRequest loginCourierRequest = LoginCourierRequest.from(createCourierRequest);
+
+        id = courierClient.login(loginCourierRequest)
+                .statusCode(200)
+                .extract().jsonPath().get("id");
     }
 
     @Test
@@ -66,7 +78,7 @@ public class CreateCourierRequestTest {
     public void tearDown() {
         if (id != null) {
             courierClient.delete(id)
-                        .statusCode(200);
+                .statusCode(200);
         }
     }
 

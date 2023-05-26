@@ -31,7 +31,7 @@ public class CourierClient extends BaseClient {
                 .spec(getSpec())
                 .param("id", id)
                 .when()
-                .delete("/api/v1/courier/:{id}", id)
+                .delete("/api/v1/courier/{id}", id)
                 .then();
 
     }

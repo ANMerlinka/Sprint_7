@@ -49,7 +49,7 @@ public class CreateOrderRequestTest {
     @DisplayName("Creating an order with different colors") // имя теста
     @Description("Checking the body of the response to the track content and status code 201")
     public void orderCreated() {
-        CreateOrderRequest createOrderRequest = new CreateOrderRequest();
+        CreateOrderRequest createOrderRequest = new CreateOrderRequest(firstName,lastName,address,metroStation,phone,rentTime,deliveryDate,comment,color);
 
         orderClient.create(createOrderRequest)
                 .statusCode(201)

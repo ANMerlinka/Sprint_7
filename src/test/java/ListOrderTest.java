@@ -8,7 +8,7 @@ public class ListOrderTest {
     OrderClient orderClient = new OrderClient();
 
     @Test
-    @DisplayName("List order") // имя теста
+    @DisplayName("List order")
     @Description("Check that the list of orders is returned to the response body")
     public void orderList() {
         orderClient.list()

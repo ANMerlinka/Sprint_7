@@ -25,13 +25,11 @@ public class LoginCourierRequestTest {
 
         LoginCourierRequest loginCourierRequest = LoginCourierRequest.from(createCourierRequest);
 
-        int id = courierClient.login(loginCourierRequest)
+        id = courierClient.login(loginCourierRequest)
                 .statusCode(200)
                 .extract().jsonPath().get("id");
     }
 
-    // система вернёт ошибку, если неправильно указать логин или пароль
-    // если какого-то поля нет, запрос возвращает ошибку;
     @Test
     @DisplayName("Authorization of a courier with an incorrect login (request without login)") // имя теста
     @Description("Checking response body and status code 400")
